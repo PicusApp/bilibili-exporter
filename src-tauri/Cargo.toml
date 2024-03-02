@@ -1,0 +1,33 @@
+[package]
+name = "bilibili-exporter"
+version = "0.1.0"
+description = "A Tauri App"
+authors = ["you"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1.5", features = [] }
+
+[dependencies]
+tauri = { version = "1.5", features = ["api-all"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tauri-plugin-window-state = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
+thiserror = "1.0.57"
+anyhow = { version = "1.0.80", features = ["backtrace"] }
+tracing = "0.1.40"
+tracing-subscriber = "0.3.18"
+tempfile = "3.10.1"
+homedir = "0.2.1"
+dirs = "5.0.1"
+
+[features]
+# this feature is used for production builds or when `devPath` points to the filesystem
+# DO NOT REMOVE!!
+custom-protocol = ["tauri/custom-protocol"]
+
+[profile.release.package.wry]
+debug = true
+debug-assertions = true
